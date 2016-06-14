@@ -55,7 +55,7 @@ lasttime = datetime.datetime.now()
 while True:
     messages = group.messages()
     message = messages.newest
-    print("1")
+    del messages[15:]
     for m in messages:
         if (m.name != User.get().name and len(m.likes()) > 2):
             like = True
@@ -65,7 +65,6 @@ while True:
                     like = False
             if (like):
                 m.like()
-    print("2")
 
     hours = datetime.datetime.now().time().hour
     if (message != lastmsg):
@@ -83,7 +82,6 @@ while True:
             image_attachment = attachments.Image.file(open(PATH + f, 'rb'))
             bot.post("",image_attachment.url)
             os.remove(PATH + f)
-    print(3)
 
 
  
